@@ -12,6 +12,7 @@ export default class Tile {
         GAMEBOARD.append(tile);
         this.#tileElement = tile;
         this.value = value;    
+        return this
     }
 
     get value() {

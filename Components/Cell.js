@@ -3,6 +3,7 @@ export default class Cell {
     #x;
     #y;
     #tile;
+    #mergeTile;
 
     constructor(cellElement, x, y) {
         this.#cellElement = cellElement;
@@ -16,7 +17,6 @@ export default class Cell {
 
     set tile(value) {
         this.#tile = value;
-        console.log(this.#x, this.#y);
         if (value == null) return;
         this.#tile.x = this.x;
         this.#tile.y = this.y;
@@ -28,5 +28,28 @@ export default class Cell {
 
     get y() {
         return this.#y;
+    }
+
+    get mergeTile() {
+        return this.#mergeTile;
+    }
+
+    set mergeTile(value) {
+        this.#mergeTile = value;
+        this.#mergeTile.x = this.x;
+        this.#mergeTile.y = this.y;
+    }
+
+    mergeTiles() {
+        if (this.tile == null || this.mergeTile == null) return;
+        this.tile.value += this.mergeTile.value;
+        this.mergeTile.remove();
+        this.#mergeTile = null;
+    }
+
+    canAccept(incommingTile) {
+        console.log(this.tile, this.tile?.value, incommingTile.value, this.mergeTile);
+        return (this.tile == null || 
+            (this.tile.value == incommingTile.value && !this.mergeTile))
     }
 }

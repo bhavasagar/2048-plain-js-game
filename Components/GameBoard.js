@@ -34,7 +34,9 @@ export default class GameBoard {
     }
 
     randomEmptyCell() {
-        return this.#emptyCells[Math.floor(Math.random()*(this.#emptyCells.length))];
+        const randomIdx = Math.floor(Math.random()*(this.#emptyCells.length));
+        console.log(randomIdx);
+        return this.#emptyCells[randomIdx];
     }
 
     #createCells() {
@@ -46,6 +48,23 @@ export default class GameBoard {
             cells.push(cell)
         }
         return cells;
+    }
+
+    // JS creates empty slots if we assign a value to index in an array.
+    getCellsByRow() {
+        return this.#cells.reduce((cellGrid, currentCell) => {            
+            cellGrid[currentCell.y] = cellGrid[currentCell.y]  || []
+            cellGrid[currentCell.y][currentCell.x] = currentCell;
+            return cellGrid
+        }, [])
+    }
+
+    getCellsByColumn() {
+        return this.#cells.reduce((cellGrid, currentCell) => {            
+            cellGrid[currentCell.x] = cellGrid[currentCell.x]  || []
+            cellGrid[currentCell.x][currentCell.y] = currentCell;
+            return cellGrid
+        }, [])
     }
 
 }
