@@ -30,7 +30,7 @@ export default class Tile {
     /**
      * @param {any} value
      */
-    set x(value) {
+    set x(value) { 
         this.#x = value;
         this.#tileElement.style.setProperty("--x", value)
     }
