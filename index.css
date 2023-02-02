@@ -1,0 +1,56 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  font-family: Arial;
+}
+
+body {
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-size: 7.5vmin;
+}
+
+.game-board {
+    --cell-size: 15vmin;
+    --cell-count: 4;
+    --cell-gap: 1vmin;
+
+    position: relative;
+
+    display: grid;
+    grid-template-columns: repeat(var(--cell-count), var(--cell-size));
+    grid-template-rows: repeat(var(--cell-count), var(--cell-size));
+    background-color: #ccc;
+    padding: var(--cell-gap);
+    gap: var(--cell-gap);
+    border-radius: 1vmin;
+}
+
+.cell {
+    background-color: #aaa;
+    border-radius: 1vmin;
+}
+
+.tile {
+
+    --x: 3;
+    --y: 3;
+
+    position: absolute;
+    width: var(--cell-size);
+    height: var(--cell-size);
+
+    border-radius: 1vmin;
+    background-color: purple;
+    top: calc(var(--y)*(var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
+    left: calc(var(--x)*(var(--cell-size) + var(--cell-gap)) + var(--cell-gap));    
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
