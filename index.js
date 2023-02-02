@@ -75,7 +75,7 @@ function slideTiles(cells) {
             let lastValidCell;
             for (let j = i-1; j >= 0; j--) {
                 let moveToCell = group[j];
-                console.log(moveToCell.canAccept(cell.tile), cell.tile, moveToCell);
+                // console.log(moveToCell.canAccept(cell.tile), cell.tile, moveToCell);
                 if (!moveToCell.canAccept(cell.tile)) break;
                 lastValidCell = moveToCell;
             } 

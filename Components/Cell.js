@@ -48,7 +48,7 @@ export default class Cell {
     }
 
     canAccept(incommingTile) {
-        console.log(this.tile, this.tile?.value, incommingTile.value, this.mergeTile);
+        // console.log(this.tile, this.tile?.value, incommingTile.value, this.mergeTile);
         return (this.tile == null || 
             (this.tile.value == incommingTile.value && !this.mergeTile))
     }

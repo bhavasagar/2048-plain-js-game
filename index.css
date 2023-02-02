@@ -1,6 +1,8 @@
-*, *::before, *::after {
-  box-sizing: border-box;
-  font-family: Arial;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: Arial;
 }
 
 body {
@@ -14,12 +16,7 @@ body {
 }
 
 .game-board {
-    --cell-size: 15vmin;
-    --cell-count: 4;
-    --cell-gap: 1vmin;
-
     position: relative;
-
     display: grid;
     grid-template-columns: repeat(var(--cell-count), var(--cell-size));
     grid-template-rows: repeat(var(--cell-count), var(--cell-size));
@@ -35,22 +32,25 @@ body {
 }
 
 .tile {
-
-    --x: 3;
-    --y: 3;
+    --bg-lightness: 20%;
+    --color-lightness: 80%;
 
     position: absolute;
     width: var(--cell-size);
     height: var(--cell-size);
 
     border-radius: 1vmin;
-    background-color: purple;
+    background-color: hsl(300, 100%, var(--bg-lightness));
+    color: hsl(300, 100%, var(--color-lightness));
     top: calc(var(--y)*(var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
-    left: calc(var(--x)*(var(--cell-size) + var(--cell-gap)) + var(--cell-gap));    
+    left: calc(var(--x)*(var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
 
 
     display: flex;
     justify-content: center;
     align-items: center;
-}
 
+
+    animation: show 200ms ease-in-out;
+    transition: 100ms ease-in-out;
+}
