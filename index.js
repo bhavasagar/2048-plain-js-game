@@ -3,7 +3,7 @@ console.log("INDEX JS ");
 import GameBoard from "./Components/GameBoard.js";
 import Tile from "./Components/Tile.js";
 
-var game;
+var game, touchstartX, touchstartY, touchendX, touchendY;
 const GAMEBOARDELEMENT = document.querySelector('.game-board');
 
 function init() {
@@ -21,16 +21,50 @@ function init() {
     document.querySelector("[data-new-game]")?.addEventListener('click', () => {
         game.emptyCells();
         init();
-    }, {once: true})
+    }, {once: true});
 
+
+    touchEventListeners();
+}
+
+function touchEventListeners() {
+    window.addEventListener('touchstart', function (event) {
+        touchstartX = event.changedTouches[0].screenX;
+        touchstartY = event.changedTouches[0].screenY;
+    }, false);
+    
+    window.addEventListener('touchend', function (event) {
+        touchendX = event.changedTouches[0].screenX;
+        touchendY = event.changedTouches[0].screenY;
+        let direction = '';
+        if (touchendX < touchstartX) {
+            direction = "ArrowLeft"
+            console.log('Swiped Left');
+        }
+        if (touchendX > touchstartX) {
+            direction = "ArrowRight"
+            console.log('Swiped Right');
+        }
+        
+        if (touchendY < touchstartY) {
+            direction = "ArrowUp"
+            console.log('Swiped Up');
+        }
+        
+        if (touchendY > touchstartY) {
+            direction = "ArrowDown"
+            console.log('Swiped Down');
+        }
+        switchDirection(direction);
+    }, false);
 }
 
 function setUpEventListner() {
     window.addEventListener('keydown', handleInput, {once: true});
 }
 
-async function handleInput(e) {
-    switch (e.key) {
+async function switchDirection(target) {
+    switch (target) {
         case "ArrowUp":
             console.log("Up");
             if (!canMoveUp()) {
@@ -62,7 +96,10 @@ async function handleInput(e) {
         default: setUpEventListner()
             return;
     }
+}
 
+async function handleInput(e) {
+    switchDirection(e.key);
     
     game.cells.forEach(cell => {
         cell.mergeTiles();

@@ -54,7 +54,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    user-select: none;
 
     animation: show 200ms ease-in-out;
     transition: 100ms ease-in-out;
