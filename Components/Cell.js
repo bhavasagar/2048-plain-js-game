@@ -45,11 +45,17 @@ export default class Cell {
         this.tile.value += this.mergeTile.value;
         this.mergeTile.remove();
         this.#mergeTile = null;
+
+        localStorage.setItem("score", (parseInt(localStorage.getItem("score")) + this.tile.value).toString())
     }
 
     canAccept(incommingTile) {
         // console.log(this.tile, this.tile?.value, incommingTile.value, this.mergeTile);
         return (this.tile == null || 
             (this.tile.value == incommingTile.value && !this.mergeTile))
+    }  
+
+    remove() {
+        this.#cellElement.remove();
     }
 }

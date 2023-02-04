@@ -12,12 +12,17 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    font-size: 7.5vmin;
+
+    position: relative;
 }
+
 
 .game-board {
     position: relative;
     display: grid;
+    width: fit-content;
+    margin: 0 auto;
+    font-size: 7.5vmin;
     grid-template-columns: repeat(var(--cell-count), var(--cell-size));
     grid-template-rows: repeat(var(--cell-count), var(--cell-size));
     background-color: #ccc;
@@ -53,4 +58,61 @@ body {
 
     animation: show 200ms ease-in-out;
     transition: 100ms ease-in-out;
+}
+
+.header {
+    color: #fff;
+    display: flex;
+    font-size: 2rem;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 4vmin auto;
+}
+
+.header div {
+    flex: 1;
+}
+
+.new-game .btn{
+    padding: 0.75rem 1rem;
+    background-color: purple;
+    width: fit-content;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.score {
+    text-align: end;
+}
+
+.model {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 7.5vmin;    
+
+    display: none;
+}
+
+.card {
+    background: #fff;
+    padding: 1rem 2rem;
+    border-radius: 2px;
+    /* width: 5rem;
+    height: 5rem; */
+
+    box-shadow: 1px 0px 9px 1px rgba(0,0,0,0.54);
+    -webkit-box-shadow: 1px 0px 9px 1px rgba(0,0,0,0.54);
+    -moz-box-shadow: 1px 0px 9px 1px rgba(0,0,0,0.54);
 }

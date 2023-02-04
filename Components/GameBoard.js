@@ -29,6 +29,16 @@ export default class GameBoard {
         return this.#cells;
     }
 
+    emptyCells() {
+        this.#cells.forEach(cell => {
+            if (cell.tile) {
+                cell.tile.remove();
+            };
+            cell.remove();
+        })
+        this.#cells = null;
+    }
+
     get #emptyCells() {
         return this.#cells.filter(cell => cell.tile == null);
     }
