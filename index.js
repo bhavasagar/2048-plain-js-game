@@ -19,6 +19,7 @@ function init() {
     setUpEventListner();
 
     document.querySelector("[data-new-game]")?.addEventListener('click', () => {
+        document.querySelector(`[data-model]`).style.display = "none";
         game.emptyCells();
         init();
     }, {once: true});
@@ -56,6 +57,7 @@ function touchEventListeners() {
             console.log('Swiped Down');
         }
         switchDirection(direction);
+        postMoveLogic();
     }, false);
 }
 
@@ -98,9 +100,7 @@ async function switchDirection(target) {
     }
 }
 
-async function handleInput(e) {
-    switchDirection(e.key);
-    
+function postMoveLogic() {
     game.cells.forEach(cell => {
         cell.mergeTiles();
     });
@@ -110,12 +110,19 @@ async function handleInput(e) {
 
     if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
         console.log("** GAME OVER**");
+        document.querySelector(`[data-model]`).style.display = "flex";
         return
     }
 
     document.querySelector("*[data-id='score-value']").textContent = localStorage.getItem("score");
+}
 
-    setUpEventListner()
+async function handleInput(e) {
+    switchDirection(e.key);
+    
+    postMoveLogic();
+
+    setUpEventListner();
 }
 
 function moveUp() { 

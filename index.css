@@ -82,6 +82,8 @@ body {
     border-radius: 5px;
     cursor: pointer;
     user-select: none;
+    z-index: 2;
+    position: relative;
 }
 
 .score {
@@ -102,7 +104,8 @@ body {
 
     font-size: 7.5vmin;    
 
-    display: none;
+    display: none;   
+    z-index: 1; 
 }
 
 .card {
